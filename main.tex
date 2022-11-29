@@ -46,8 +46,9 @@
 \addto\captionsrussian{\renewcommand{\contentsname}{Содержание}}
 
 % Формат оглавления
+\renewcommand{\cftaftertoctitle}{\thispagestyle{plain}}
 \renewcommand\cfttoctitlefont{\hfill\fontsize{16pt}{16pt}\selectfont\bfseries\MakeUppercase}
-\renewcommand\cftaftertoctitle{\hfill\hfill}
+\renewcommand\cftaftertoctitle{\hfill}
 
 % Добавить точки у разделов в оглавлении
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} 
@@ -217,7 +218,6 @@
         Не забудьте в преамбуле в команде \verb"\hypersetup" поменять значение полей \verb"pdftitle={"Название моего документа\verb"}", \verb"pdfauthor={"Моё имя\verb"}".
     \end{abstract}
 
-    \renewcommand{\cftaftertoctitle}{\thispagestyle{plain}}
     \tableofcontents
 
     \section*{Введение}
