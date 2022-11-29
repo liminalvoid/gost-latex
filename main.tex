@@ -24,8 +24,6 @@
 \usepackage[labelsep=endash]{caption}
 % Пакет делает ссылки кликабельными и дает возможность добавить метаданные .pdf документа
 \usepackage{hyperref}
-% Стилизация содержания
-\usepackage[tocflat]{tocstyle}
 
 %%%%%%%%%% Блок настроек %%%%%%%%%%
 
@@ -56,8 +54,8 @@
 
 % Формат секций и подсекций
 \titleformat{\section}{\parskip=6pt\filcenter\fontsize{16pt}{16pt}\selectfont\bfseries\uppercase}{\thesection}{.5em}{}
-\titleformat{\subsection}{\filcenter\bfseries}{\thesubsection}{.5em}{}
-\titleformat{\subsubsection}{\filcenter\bfseries}{\thesubsubsection}{.5em}{}
+\titleformat{\subsection}{\bfseries}{\thesubsection}{.5em}{}
+\titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{.5em}{}
 
 % Начинать раздел с новой страницы
 \AddToHook{cmd/section/before}{\clearpage}
@@ -101,6 +99,21 @@
     Р\or С\or Т\or У\or Ф\or Х\or Ц\or 
     Ш\or Э\or Ю\or Я\else\@ctrerr\fi}
 
+% Очистка страницы с содержанием
+\fancypagestyle{plain}{
+    % clear all header and footer fields
+    \fancyhf{}
+    % clear all header fields
+    \fancyhead{}
+    % clear all footer fields
+    \fancyfoot{}
+    \fancyhead[RO]{\thepage}
+    \fancyhead[LE]{\thepage}
+    \setlength{\headheight}{35pt}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
 % Разделы в оглавлении без выделения жирным, в верхнем регистре
 \patchcmd{\l@section}{#1}{\textnormal{\uppercase{#1}}}{}{}
 
@@ -109,7 +122,9 @@
 
 \apptocmd{\appendix}{
     \renewcommand{\thesection}{\Asbuk{section}}
-    \titleformat{\section}{\filcenter\fontsize{16pt}{16pt}\selectfont\bfseries}{}{0pt}{\MakeUppercase{\appendixname}~\thesection \\}{}{} % Изменение формата раздела приложения
+
+    % Изменение формата раздела приложения
+    \titleformat{\section}{\filcenter\fontsize{16pt}{16pt}\selectfont\bfseries}{}{0pt}{\MakeUppercase{\appendixname}~\thesection \\}{}{}
     
     \let\oldsec\section
     \renewcommand{\section}{
@@ -130,10 +145,7 @@
 \addto\captionsrussian{\renewcommand{\figurename}{Рисунок}}
 
 % Метаданные .pdf документа, отключение подсветки ссылок
-\hypersetup{pdftitle={Методы и средства защиты информации}, pdfauthor={И. О. Фамилия}, colorlinks=false, pdfborder={0 0 0}}
-
-% Выбор стиля
-\usetocstyle{standart}
+\hypersetup{pdftitle={Исследование методов веторизации текста и извлечения признаков}, pdfauthor={К. А. Проскуряков}, colorlinks=false, pdfborder={0 0 0}}
 
 %%%%%%%%%% Блок описания документа %%%%%%%%%%
 
@@ -205,6 +217,7 @@
         Не забудьте в преамбуле в команде \verb"\hypersetup" поменять значение полей \verb"pdftitle={"Название моего документа\verb"}", \verb"pdfauthor={"Моё имя\verb"}".
     \end{abstract}
 
+    \renewcommand{\cftaftertoctitle}{\thispagestyle{plain}}
     \tableofcontents
 
     \section*{Введение}
