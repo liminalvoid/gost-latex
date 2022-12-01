@@ -24,6 +24,10 @@
 \usepackage[labelsep=endash]{caption}
 % Пакет делает ссылки кликабельными и дает возможность добавить метаданные .pdf документа
 \usepackage{hyperref}
+% Для картиночек
+\usepackage{float}
+% Для кода
+\usepackage{listings}
 
 %%%%%%%%%% Блок настроек %%%%%%%%%%
 
@@ -157,9 +161,9 @@
 
         \begin{center}
             Министерство науки и высшего образования Российской Федерации
-            \par 
+
             ФГАОУ ВО <<Севастопольский государственный университет>>
-            \par
+
             Институт информационных технологий
         \end{center}
 
@@ -176,15 +180,15 @@
 
         \begin{center}
             \textbf{РАСЧЁТНО-ГРАФИЧЕСКАЯ РАБОТА}
-            \par
+
             по теме
-            \par
+
             <<Исследование методов векторизации текста
-            \par
+
             и извлечения признаков>>
-            \par
+
             по дисциплине
-            \par
+
             <<Защита программ и данных>>
         \end{center}
 
@@ -205,18 +209,12 @@
         \begin{center}
             \vfill
             Севастополь
-            \par
+
             \the\year{}
         \end{center}
     \end{titlepage}
 
     \addtocounter{page}{1}
-
-    \begin{abstract}
-        \subsection*{Метаданные .pdf}
-        
-        Не забудьте в преамбуле в команде \verb"\hypersetup" поменять значение полей \verb"pdftitle={"Название моего документа\verb"}", \verb"pdfauthor={"Моё имя\verb"}".
-    \end{abstract}
 
     \tableofcontents
 
@@ -224,221 +222,197 @@
         \phantomsection
         \addcontentsline{toc}{section}{Введение}
 
-        Текст введения.
+        Машинное обучение предоставляет возможность 
+        быстро и эффективно решать как внешние, так и внутренние
+        задачи, которые возникают перед бизнесом. С каждым днем
+        чат-боты становятся всё более совершенными, и отличить
+        поведение программы от человеческого становится
+        всё сложнее и сложнее.
 
-    \section{Структура документа}
-        Структура документа совместима со стандартным классом документа article.
+        С помощью моделей машинного обучения и внедрения
+        их в код программы осуществляется генерация уникальных
+        ответов в чат-ботах. Для создания эффективной модели
+        необходимо осуществить предварительную обработку
+        текста, а именно токенизацию, лемматизацию, удаление
+        стоп-слов (союзов, предлогов, междометий и т. д.) и
+        векторизацию.
 
-        \subsection{Титульная страница}
-            Титульная страница находится в окружении titlepage в начале документа:
-            \begin{verbatim}
-            \begin{titlepage}
-            ...
-            \end{titlepage}
-            \end{verbatim}
+        Одним из механизмов классификации текста является
+        векторизация. Для обработки используются следующие
+        алгоритмы:
 
-            При изменении кол-ва титульных страниц необходимо отметить кол-во в счетчике станиц. Пример:
-            \begin{verbatim}
-            \begin{titlepage}
-            ...
-            \end{titlepage}
-            \addtocounter{page}{1}
-            \end{verbatim}
+        \begin{itemize}
+            \item \textit{One-hot encoding};
+            \item \textit{TD-IDF};
+            \item \textit{CountVectorizer};
+            \item \textit{word2vec}.
+        \end{itemize}
 
-        \subsection{Аннотация}
-            \begin{verbatim}
-            \begin{abstract}
-            ...
-            \end{abstract}
-            \end{verbatim}
+        Целью работы является проверка алгоритмов векторизации
+        на практике и сравнение их эффективности путем
+        использования полученного корпуса текстов в методе
+        машинного обучения.
 
-        \subsection{Оглавление}
-            \begin{verbatim}
-            \tableofcontents
-            \end{verbatim}
+        В задачи работы входит:
 
-        \subsection{Введение, раздел без нумерации}
-            \noindent\verb"\section*{"Введение\verb"}"\\
-            \verb"\phantomsection"\\
-            \verb"\addcontentsline{toc}{section}{"Введение\verb"}"\\
-            \verb"..."
+        \begin{enumerate}
+            \item Дать определение используемым в ходе работы
+            понятиям;
+            \item Применить к полученному корпусу текстов
+            алгоритмы векторизации;
+            \item Использовать полученный результат в
+            качестве моделей для алгоритма машинного обучения;
+            \item Сравнить полученный результат.
+        \end{enumerate}
 
-        \subsection{Раздел}
-            \begin{verbatim}
-            \section{...}
-            ...
-            \end{verbatim}
+        \newpage
 
-        \subsection{Подраздел}
-            \begin{verbatim}
-            \subsection{...}
-            ...
-            \end{verbatim}
+        Объектом исследования является текст, предметом --
+        методы векторизации текста.
 
-        \subsection{Пункт}
-            \begin{verbatim}
-            \subsubsection{...}
-            ...
-            \end{verbatim}
+        Работа изложена на INSERT страницах основного текста,
+        включающего INSERT рисунков, INSERT таблиц, список
+        литературных источников из INSERT наименований,
+        INSERT приложений.
 
-        \subsubsection{Пример пункта}
-            Текст пункта.
-
-        \subsection{Приложение}
-            Как и в стандартных классах перед приложениями необходимо указать команду \verb"\appendix".
-
-            Пример с одним приложением:
-            \begin{verbatim}
-            \appendix
-            \section{...}
-            ...
-            \end{verbatim}
-
-            Пример с тремя приложениями:
-            \begin{verbatim}
-            \appendix
-            \section{...}
-            ...
-            \section{...}
-            ...
-            \section{...}
-            ...
-            \end{verbatim}
-
-            Ссылка на приложение:
-            \begin{verbatim}
-            \ref{...}
-            \end{verbatim}
-
-            Пример ссылки на приложение~\ref{appendix:test_label}.
-
-            За порядком приложений необходимо следить самостоятельно.
-
-        \subsection{Список}
-            \begin{verbatim}
-            \begin{itemize}
-                \item ...,
-                ...
-            \end{itemize}
-            \end{verbatim}
-
-            \begin{itemize}
-                \item[] Пример списка:
-                \item первый уровень вложенности,
+    \section{Озаглавить}
+        \subsection{Правовое поле использованных библиотек}
+            \subsubsection{Библиотеки получения корпуса}
                 \begin{itemize}
-                    \item второй,
-                    \begin{itemize}
-                        \item третий,
-                        \begin{itemize}
-                            \item четвертый.
-                        \end{itemize}
-                    \end{itemize}
+                    \item \textit{string}
+                    -- стандартная библиотека \textit{Python}.
+                    Распространяется по лицензии \textit{PSF};
+                    \item \textit{re}
+                    -- стандартная библиотека \textit{Python}.
+                    Распространяется по лицензии \textit{PSF};
+                    \item \textit{SpaCy}
+                    -- библиотека обработки естественного языка.
+                    Распространяется по лицензии \textit{MIT}.
                 \end{itemize}
-            \end{itemize}
 
-        \subsection{Перечисление}
-            \begin{verbatim}
-            \begin{enumerate}
-                \item ...;
-                ...
-            \end{enumerate} 
-            \end{verbatim}
+            \subsubsection{Библиотеки векторизации}
+                \begin{itemize}
+                    \item \textit{sklearn}
+                    -- библиотека машинного обучения.
+                    Распространяется по лицензии \textit{BSD-3};
+                    \item \textit{gensim}
+                    -- библиотека обработки естественного
+                    языка и информационного поиска.
+                    Распространяется по лицензии \textit{LGPL-2.1}.
+                \end{itemize}
 
-            \begin{enumerate}
-                \item[] Пример перечисления:
-                \item первый уровень вложенности;
-                \begin{enumerate}
-                    \item второй;
-                    \begin{enumerate}
-                        \item третий;
-                        \begin{enumerate}
-                            \item четвертый;
-                            \item б;
-                            \item в;
-                            \item г;
-                            \item д;
-                            \item е;
-                            \item ж;
-                            \item и;
-                            \item к;
-                            \item л;
-                            \item м;
-                            \item н;
-                            \item о;
-                            \item п;
-                            \item р;
-                            \item с;
-                            \item т;
-                            \item у;
-                            \item ф;
-                            \item x;
-                            \item ц;
-                            \item ш;
-                            \item э;
-                            \item ю;
-                            \item я, при наличии б\'ольшего кол-ва элементов компилятор выдаст ошибку.
-                        \end{enumerate}
-                    \end{enumerate}
-                \end{enumerate}
-            \end{enumerate}
+        \subsection{Глоссарий}
+            Текст
+            -- это некоторая последовательность предложений,
+            имеющая логическую последовательность и сообщающая
+            какую-либо информацию.
 
-        \subsection{Иллюстрация}
-            Пакет graphicx подключен. См. рисунок~\ref{fig:test_label} на стр.~\pageref{fig:test_label}.
+            Корпус текстов
+            -- это подобранная и обработанная по определенным
+            правилам совокупность текстов, используемая для
+            исследования языка.
 
-            \begin{figure}[htb]
-                \centering
-                \parskip=6pt
-                \caption{Подпись ниже рисунка по центру}
-                \label{fig:test_label}
-            \end{figure}
+            Токен
+            -- это текстовая единица (слово, словосочетание
+            и т. д.).
 
-            Обратите внимание, что окружение figure является \emph{плавающим}, и иллюстрация может появиться не там, где Вы ожидаете. Для размещения иллюстрации в конкретное место необходимо воспользоваться опцией H из пакета float (не подключен).
+        \newpage
 
-        \subsection{Таблица}
-            См. таблицу~\ref{tab:test_label} на стр.~\pageref{tab:test_label}.
+        \subsection{Обозначение входных и выходных данных}
+            pass
 
-            \begin{table}[htb]
-                \caption{Подпись выше таблицы слева}
-                \centering
-                \begin{tabular}{ |c|c|c|c|c| } 
-                    \hline
-                    ячейка 1 & ячейка 2 & ячейка 3 & ячейка 4 & ячейка 5 \\ \hline
-                    ячейка 6 & ячейка 7 & ячейка 8 & ячейка 9 & ячейка 10 \\ \hline
-                \end{tabular}
-                \label{tab:test_label}
-            \end{table}
+        \newpage
 
-            Обратите внимание, что окружение table является \emph{плавающим}, и таблица может появиться не там, где Вы ожидаете. Для размещения таблицы в конкретное место необходимо воспользоваться опцией H из пакета float (не подключен).
+        \subsection{Математические модели методов векторизации}
+            \subsubsection{One-hot encoding}
+                pass
 
-        \subsection{Уравнение и формула}
-            См. формулу~\ref{eq:test_label}.
+            \subsubsection{TD-IDF}
+                Общая формула показателя $IDF$ выглядит
+                следующим образом:
 
-            \begin{equation}\label{eq:test_label}
-                \text{минус}\,a\times b=c ,
-            \end{equation}
-            где $a$ --- первая переменная; \\
-            $b$ --- вторая переменная; \\
-            $c$ --- третья переменная.
+                \begin{equation*}
+                    IDF(t, D) = \log{
+                        \frac{|D| + 1}{DF(t, D) + 1}
+                    }
+                \end{equation*}
 
-    \appendix
-        \section{Использованные пакеты}
-            \label{appendix:used_packages}
+                где
 
-            \begin{itemize}
-                \item caption,
-                \item fontspec,
-                \item geometry,
-                \item graphicx,
-                \item hyperref,
-                \item indentfirst,
-                \item newtxmath,
-                \item titlesec,
-                \item tocloft,
-                \item ulem.
-            \end{itemize}
+                \begin{itemize}
+                    \item $D$
+                    -- количество документов в корпусе,
+                    \item $DF(t, D)$
+                    -- количество документов, в которых
+                    встречается слово.
+                \end{itemize}
 
-        \section{Название второго приложения}
-            \label{appendix:test_label}
+                Так, если слово встречается во всех документах,
+                то $IDF = 0$. В итоге,
+                
+                \begin{equation*}
+                    TFIDF = IDF \cdot TF
+                \end{equation*}
 
-            Содержание второго приложения.
+            \subsubsection{CountVectorizer}
+                pass
+
+            \subsubsection{word2vec}
+                pass
+
+    \section{Озаглавить}
+        \subsection{Методы предварительной обработки и фильтрации}
+            \subsubsection{Токенизация}
+                Токенизация представляет из себя процесс
+                разбиения больших участков текста на
+                абзацы, предложения и слова. Данная операция
+                не требует сторонних библиотек и может быть
+                реализована с помощью стандартных модулей
+                языка \textit{Python}.
+
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=\textwidth]{images/code-examples/tokenization}
+                    \parskip=6pt
+                    \caption{Токенизация стандартными библиотеками языка Python}
+                    \label{fig:code_tokenization}
+                \end{figure}
+            
+            \subsubsection{Лемматизация}
+                Лемматизация -- это процесс приведения слова
+                к его словарной (изначальной) форме. Данная
+                операция требует подключения сторонних
+                библиотек. На рис.~\ref{fig:code_lemmatisation}
+                представлен процесс лемматизации с помощью
+                библиотеки \textit{SpaCy}.
+                
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=\textwidth]{images/code-examples/lemmatisation}
+                    \parskip=6pt
+                    \caption{Лемматизация библиотекой SpaCy}
+                    \label{fig:code_lemmatisation}
+                \end{figure}
+
+            \newpage
+
+            \subsubsection{Удаление шумовых слов}
+                Под шумовыми словами подразумевают слова, не
+                несущие смысловой нагрузки (междометия, союзы
+                и т. д.). Операция может быть выполнена средствами
+                языка программирования.
+
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=\textwidth]{images/code-examples/stop-words}
+                    \parskip=6pt
+                    \caption{Удаление стоп-слов}
+                    \label{fig:code_stop-words}
+                \end{figure}
+
+    \section{Озаглавить}
+        \subsection{}
+
+    \section*{Заключение}
+
 \end{document}
