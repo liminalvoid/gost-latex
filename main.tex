@@ -54,13 +54,27 @@
 \renewcommand\cfttoctitlefont{\hfill\fontsize{16pt}{16pt}\selectfont\bfseries\MakeUppercase}
 \renewcommand\cftaftertoctitle{\hfill}
 
+% Смена точек на нижние подчеркивания
+\renewcommand{\cftdot}{\_}
+
+% Удаление расстояний в содержании
+\renewcommand{\cftdotsep}{0}
+\cftsetpnumwidth{0.5em}
+\setlength{\cftbeforesecskip}{0em}
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsubsecaftersnum}{.}
+\renewcommand{\cftsubsubsecaftersnum}{.}
+\renewcommand{\cftsecnumwidth}{1em}
+\renewcommand{\cftsubsecnumwidth}{1.7em}
+\renewcommand{\cftsubsubsecnumwidth}{2.4em}
+
 % Добавить точки у разделов в оглавлении
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} 
 
 % Формат секций и подсекций
-\titleformat{\section}{\parskip=6pt\filcenter\fontsize{16pt}{16pt}\selectfont\bfseries\uppercase}{\thesection}{.5em}{}
-\titleformat{\subsection}{\bfseries}{\thesubsection}{.5em}{}
-\titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{.5em}{}
+\titleformat{\section}{\parskip=6pt\filcenter\fontsize{16pt}{16pt}\selectfont\bfseries\uppercase}{\thesection}{.0em. }{}
+\titleformat{\subsection}{\bfseries}{\thesubsection}{.0em. }{}
+\titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{.0em. }{}
 
 % Начинать раздел с новой страницы
 \AddToHook{cmd/section/before}{\clearpage}
@@ -120,7 +134,7 @@
 }
 
 % Разделы в оглавлении без выделения жирным, в верхнем регистре
-\patchcmd{\l@section}{#1}{\textnormal{\uppercase{#1}}}{}{}
+\patchcmd{\l@section}{#1}{\textnormal{#1}}{}{}
 
 % Страницы без выделения жирным
 \patchcmd{\l@section}{#2}{\textnormal{#2}}{}{}
@@ -218,63 +232,6 @@
 
     \tableofcontents
 
-    \section*{Введение}
-        \phantomsection
-        \addcontentsline{toc}{section}{Введение}
-
-        Машинное обучение предоставляет возможность 
-        быстро и эффективно решать как внешние, так и внутренние
-        задачи, которые возникают перед бизнесом. С каждым днем
-        чат-боты становятся всё более совершенными, и отличить
-        поведение программы от человеческого становится
-        всё сложнее и сложнее.
-
-        С помощью моделей машинного обучения и внедрения
-        их в код программы осуществляется генерация уникальных
-        ответов в чат-ботах. Для создания эффективной модели
-        необходимо осуществить предварительную обработку
-        текста, а именно токенизацию, лемматизацию, удаление
-        стоп-слов (союзов, предлогов, междометий и т. д.) и
-        векторизацию.
-
-        Одним из механизмов классификации текста является
-        векторизация. Для обработки используются следующие
-        алгоритмы:
-
-        \begin{itemize}
-            \item \textit{One-hot encoding};
-            \item \textit{TD-IDF};
-            \item \textit{CountVectorizer};
-            \item \textit{word2vec}.
-        \end{itemize}
-
-        Целью работы является проверка алгоритмов векторизации
-        на практике и сравнение их эффективности путем
-        использования полученного корпуса текстов в методе
-        машинного обучения.
-
-        В задачи работы входит:
-
-        \begin{enumerate}
-            \item Дать определение используемым в ходе работы
-            понятиям;
-            \item Применить к полученному корпусу текстов
-            алгоритмы векторизации;
-            \item Использовать полученный результат в
-            качестве моделей для алгоритма машинного обучения;
-            \item Сравнить полученный результат.
-        \end{enumerate}
-
-        \newpage
-
-        Объектом исследования является текст, предметом --
-        методы векторизации текста.
-
-        Работа изложена на INSERT страницах основного текста,
-        включающего INSERT рисунков, INSERT таблиц, список
-        литературных источников из INSERT наименований,
-        INSERT приложений.
-
     \section{Озаглавить}
         \subsection{Правовое поле использованных библиотек}
             \subsubsection{Библиотеки получения корпуса}
@@ -370,29 +327,29 @@
                 реализована с помощью стандартных модулей
                 языка \textit{Python}.
 
-                \begin{figure}[H]
-                    \centering
-                    \includegraphics[width=\textwidth]{images/code-examples/tokenization}
-                    \parskip=6pt
-                    \caption{Токенизация стандартными библиотеками языка Python}
-                    \label{fig:code_tokenization}
-                \end{figure}
+                % \begin{figure}[H]
+                %     \centering
+                %     \includegraphics[width=\textwidth]{images/code-examples/tokenization}
+                %     \parskip=6pt
+                %     \caption{Токенизация стандартными библиотеками языка Python}
+                %     \label{fig:code_tokenization}
+                % \end{figure}
             
             \subsubsection{Лемматизация}
-                Лемматизация -- это процесс приведения слова
-                к его словарной (изначальной) форме. Данная
-                операция требует подключения сторонних
-                библиотек. На рис.~\ref{fig:code_lemmatisation}
-                представлен процесс лемматизации с помощью
-                библиотеки \textit{SpaCy}.
+                % Лемматизация -- это процесс приведения слова
+                % к его словарной (изначальной) форме. Данная
+                % операция требует подключения сторонних
+                % библиотек. На рис.~\ref{fig:code_lemmatisation}
+                % представлен процесс лемматизации с помощью
+                % библиотеки \textit{SpaCy}.
                 
-                \begin{figure}[H]
-                    \centering
-                    \includegraphics[width=\textwidth]{images/code-examples/lemmatisation}
-                    \parskip=6pt
-                    \caption{Лемматизация библиотекой SpaCy}
-                    \label{fig:code_lemmatisation}
-                \end{figure}
+                % \begin{figure}[H]
+                %     \centering
+                %     \includegraphics[width=\textwidth]{images/code-examples/lemmatisation}
+                %     \parskip=6pt
+                %     \caption{Лемматизация библиотекой SpaCy}
+                %     \label{fig:code_lemmatisation}
+                % \end{figure}
 
             \newpage
 
@@ -402,13 +359,13 @@
                 и т. д.). Операция может быть выполнена средствами
                 языка программирования.
 
-                \begin{figure}[H]
-                    \centering
-                    \includegraphics[width=\textwidth]{images/code-examples/stop-words}
-                    \parskip=6pt
-                    \caption{Удаление стоп-слов}
-                    \label{fig:code_stop-words}
-                \end{figure}
+                % \begin{figure}[H]
+                %     \centering
+                %     \includegraphics[width=\textwidth]{images/code-examples/stop-words}
+                %     \parskip=6pt
+                %     \caption{Удаление стоп-слов}
+                %     \label{fig:code_stop-words}
+                % \end{figure}
 
     \section{Озаглавить}
         \subsection{}
