@@ -1,35 +1,23 @@
-# Шаблон для университетских работ
+# LaTeX шаблон
 
-## Cтруктура шаблона
+Данный репозиторий был основан на этом [репозитории](https://github.com/mirea-ninja/Latex-Template-for-Report-Diploma-Thesis).
 
-Для лабораторных работ
+## Вставка изображений
 
-```directory's tree
-project
-│   .gitignore
-│   README.md
-│   main.tex
-│
-└───images
-    │
-    └───image-subfolder
-        │   ...
+```latex
+\image{<путь_к_изображению>}{<подпись>}{<ссылка>}
 ```
 
-Для работ, требующих использование статей
+По умолчанию изображения должны храниться в папке `images`.
 
-```directory's tree
-project
-│   .gitignore
-│   README.md
-│   main.tex
-│
-├───articles
-│   │   article.pdf
-│   │   ...
-│   
-└───images
-    │   
-    └───image-subfolder
-        │   ...
+## Вставка кода из файла
+
+```latex
+\code{<путь_к_файлу>}{<язык>}{<подпись>}
+```
+
+## Вставка таблицы
+
+```latex
+\sheet{<разметка>}{<подпись>}{<ссылка>}{<контент>}
 ```

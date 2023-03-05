@@ -1,0 +1,40 @@
+% Макросы
+
+% Аргументы команд не должны содержать "<" и ">"
+
+% \image{<путь_к_изображению>}{<подпись>}{<ссылка>}
+
+\newcommand{\image}[3]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{#1}
+        \caption{#2}
+        \label{fig:#3}
+    \end{figure}
+}
+
+% \code{<путь_к_файлу>}{<язык>}{<подпись>}
+
+\newcommand{\code}[2]{
+    \lstinputlisting[
+        language=#2,
+        caption=adsfsdf
+    ]
+    {sources/code/#1}
+}
+
+% \sheet{<разметка>}{<подпись>}{<ссылка>}{<контент>}
+
+% Пример наполнения таблицы 3х3:
+
+% Один & Два & Три \\ \hline
+% 1 & 2 & 3 \\ \hline
+% 4 & 5 & 6 \\ \hline
+
+\newcommand{\sheet}[4]{
+    \begin{xltabular}{\textwidth}{#1}
+        \caption{#2} \label{tab:#3} \\
+        \hline
+        #4
+    \end{xltabular}
+}
