@@ -38,3 +38,12 @@
         #4
     \end{xltabular}
 }
+
+% \section_unlisted{<название_заголовка>}
+
+\newcommand{\section_unlisted}[#1]{
+  \section*{#1}
+  \phantomsection
+  \addcontentsline{toc}{section}{#1}
+}
+
