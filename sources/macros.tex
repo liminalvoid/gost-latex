@@ -2,6 +2,7 @@
 
 % Аргументы команд не должны содержать "<" и ">"
 
+% Изображение
 % \image{<путь_к_изображению>}{<подпись>}{<ссылка>}
 
 \newcommand{\image}[3]{
@@ -13,6 +14,7 @@
     \end{figure}
 }
 
+% Листинг кода
 % \code{<путь_к_файлу>}{<язык>}{<подпись>}
 
 \newcommand{\code}[3]{
@@ -23,6 +25,7 @@
     {sources/code/#1}
 }
 
+% Таблица
 % \sheet{<разметка>}{<подпись>}{<ссылка>}{<контент>}
 
 % Пример наполнения таблицы 3х3:
@@ -39,9 +42,10 @@
     \end{xltabular}
 }
 
-% \section_unordered{<название_заголовка>}
+% Ненумерованный раздел
+% \usection{<название_заголовка>}
 
-\newcommand{\section_unlisted}[#1]{
+\newcommand{\usection}[1]{
   \section*{#1}
   \phantomsection
   \addcontentsline{toc}{section}{#1}
