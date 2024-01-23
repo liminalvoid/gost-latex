@@ -6,6 +6,8 @@
 % Поменять гарнитуру в формулах на Times New Roman
 \usepackage{newtxmath}
 \usepackage[left=30mm, right=15mm, top=20mm, bottom=20mm]{geometry}
+% Шрифт для листинга
+\usepackage{courier}
 % Красная строка у первого абзаца раздела
 \usepackage{indentfirst}
 \usepackage{graphicx}
@@ -29,3 +31,12 @@
 \usepackage{ragged2e}
 % Для вставки таблиц
 \usepackage{xltabular}
+% Для вставки библиографии
+\usepackage[
+    backend=biber,
+    sorting=nyt,
+    style=gost-footnote,
+    bibstyle=gost-numeric,
+    opcittracker=false,
+    pagetracker
+]{biblatex}
